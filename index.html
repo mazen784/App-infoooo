@@ -2,37 +2,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mazen♥Asmaa</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>App Info</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&family=Lobster&display=swap');
+
+        :root {
+            --purple-1: #4a00e0;
+            --purple-2: #8e2de2;
+            --pink-heart: #ff79c6;
+            --text-color: #ffffff;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(-45deg, var(--purple-1), var(--purple-2), #6a11cb, #2575fc);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: var(--text-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+            overflow: hidden; /* Prevents scrollbars from appearing due to hearts */
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        main {
+            z-index: 10;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 2rem 3rem;
+            border-radius: 15px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        
+        h1 {
+            font-family: 'Lobster', cursive;
+            font-size: 3rem;
+            color: #f7b733; /* Gold color for the names */
+            margin-bottom: 0.5rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        h2 {
+            font-family: 'Lobster', cursive;
+            font-size: 2.5rem;
+            margin-top: 1rem;
+            color: #fc466b; /* Pinkish color */
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            max-width: 600px;
+            margin: 1rem auto;
+            direction: rtl; /* For the Arabic text */
+        }
+
+        footer {
+            position: fixed;
+            bottom: 10px;
+            width: 100%;
+            text-align: center;
+            font-size: 0.9em;
+            color: rgba(255, 255, 255, 0.7);
+            z-index: 10;
+        }
+
+        .heart {
+            position: fixed;
+            top: -10vh; /* Start off-screen */
+            font-size: 2rem;
+            pointer-events: none;
+            user-select: none;
+            animation: fall-and-sway linear forwards;
+        }
+
+        @keyframes fall-and-sway {
+            0% {
+                transform: translateY(0) translateX(0) rotate(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(120vh) translateX(var(--sway)) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+    </style>
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>Mazen♥Asmaa</h1>
-            <div class="hearts">
-                <div class="heart"></div>
-                <div class="heart"></div>
-                <div class="heart"></div>
-            </div>
-        </header>
-        
-        <main>
-            <div class="app-info">
-                <h2>معلومات التطبيق</h2>
-                <p>هذا التطبيق خاص بمازن واسماء</p>
-                <p>هذا التطبيق خاص بذكريات مازن واسماء وقصه حبهم وتواريخ ميلادهم وكل شئ يخصهم</p>
-                <div class="love-animation">
-                    <div class="love-icon">❤️</div>
-                </div>
-            </div>
-        </main>
-        
-        <footer>
-            <p>Made with love ❤️</p>
-            <p class="copyright">2025.2025@</p>
-        </footer>
-    </div>
-    
-    <script src="script.js"></script>
+    <main>
+        <h1>MAZEN&ASMAA🧡🧡🧡</h1>
+        <p>تم انشاء هذا التطبيق ليتم وضع به كل ذكرايات مازن واسماء وهذا التطبيق به كل معلومات وذكرايات مازن واسماء</p>
+        <h2>ZEZO🫶SEMO</h2>
+    </main>
+    <footer>made by mazen @ 2025.2026</footer>
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            const heartEmojis = ['💖', '❤️', '💕', '💜', '💓', '💗'];
+            heart.innerText = heartEmojis[Math.floor(Math.random() * heartEmojis.length)];
+            heart.classList.add('heart');
+
+            // Set random properties
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 5 + 5) + 's'; // 5 to 10 seconds
+            heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            heart.style.setProperty('--sway', (Math.random() * 100 - 50) + 'px'); // Sway left or right
+
+            document.body.appendChild(heart);
+
+            // Remove the heart after the animation finishes to avoid cluttering the DOM
+            heart.addEventListener('animationend', () => {
+                heart.remove();
+            });
+        }
+
+        // Create a new heart every 300 milliseconds
+        setInterval(createHeart, 300);
+    </script>
 </body>
 </html>
